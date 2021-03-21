@@ -42,12 +42,8 @@ make flash
 sudo service klipper start
 ```
 
-If klippy.log reports a "Permission denied" error when attempting to connect
-to `/tmp/klipper_host_mcu` then you need to add your user to the tty group.
-The following command will add the "pi" user to the tty group:
-```
-sudo usermod -a -G tty pi
-```
+
+
 
 Remaining configuration
 =======================
@@ -56,6 +52,21 @@ Complete the installation by configuring Klipper secondary MCU
 following the instructions in
 [RaspberryPi sample config](../config/sample-raspberry-pi.cfg) and
 [Multi MCU sample config](../config/sample-multi-mcu.cfg).
+
+After you're done editing your printer.cfg to add the host as an MCU, remember to do a FIRMWARE_RESTART to load the new configuration.
+
+And then, have a look at klippy.log:
+
+If you find a line that says "Configured MCU 'host'", then you've successfully added your Raspberry Pi as a secondary MCU named "host."
+
+If instead klippy.log reports a "Permission denied" error when attempting to connect
+to `/tmp/klipper_host_mcu` then you need to add your user (pi, typically) to the tty group.
+
+The following command will add the "pi" user to the tty group:
+```
+sudo usermod -a -G tty pi
+```
+
 
 Optional: Identify the correct gpiochip
 =======================================
